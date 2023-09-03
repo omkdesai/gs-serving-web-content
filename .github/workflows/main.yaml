@@ -63,7 +63,6 @@ jobs:
             ${{ env.IMAGE_NAME }}:${{ steps.short-sha.outputs.sha }}
             ${{ env.IMAGE_NAME }}:latest
 
-          load: true
 
       # - id: scan-docker-image
       #   name: Scan docker image
