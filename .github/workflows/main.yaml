@@ -31,7 +31,6 @@ jobs:
         with:
           context: ./complete
           run: | 
-            cp settings.xml ~/.m2/
             mvn clean install -Dmaven.test.skip=true -Djfrog_server_username=${{ secrets.JFROG_USERNAME }} -Djfrog_server_password=${{ secrets.JFROG_API_KEY }}
 
 
