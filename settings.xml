@@ -86,16 +86,4 @@
     <activeProfile>artifactory</activeProfile>
     <activeProfile>enable-central</activeProfile>
   </activeProfiles>
-<dependency>
-    <groupId>com.google.inject</groupId>
-    <artifactId>guice</artifactId>
-    <version>your-guice-version</version>
-    <exclusions>
-        <exclusion>
-            <groupId>cglib</groupId>
-            <artifactId>cglib</artifactId>
-        </exclusion>
-    </exclusions>
-</dependency>
-
 </settings>
