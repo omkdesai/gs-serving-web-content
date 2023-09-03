@@ -1,5 +1,5 @@
 FROM ubuntu:latest
-
+VOLUME /tmp
 RUN \
 # Update
 apt-get update -y && \
