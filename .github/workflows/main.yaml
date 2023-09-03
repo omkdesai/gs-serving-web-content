@@ -7,7 +7,7 @@ on:
 
 env:
   # TODO: Change to name of your Docker Registry (eg. jfrog.io)
-  DOCKER_REGISTRY: "mck-ontada-sre.jfrog.io"
+  DOCKER_REGISTRY: "omkdesai.jfrog.io"
   # TODO: Change part to name of your Docker Registry (eg. omkdesai.jfrog.io/image-name)
   IMAGE_NAME: "omkdesai.jfrog.io/gs-service-web"
   # PRISMA_USER:  ${{ secrets.PRISMA_USER }}
