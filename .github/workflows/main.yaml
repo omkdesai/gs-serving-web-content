@@ -63,7 +63,7 @@ jobs:
       - if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/qa'
         name: Docker push image
         run: |
-          jf docker push $IMAGE_NAME
+          jf docker push $IMAGE_NAME:${{ github.run_number }} 
 
       # - id: scan-docker-image
       #   name: Scan docker image
