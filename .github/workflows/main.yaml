@@ -25,7 +25,18 @@ jobs:
         uses: actions/setup-java@v1
         with:
           java-version: 17
+      - name: Setup Docker build
+        uses: docker/setup-buildx-action@v1
 
+      - name: Login to JFrog
+        uses: docker/login-action@v1
+        with:
+          # TODO: Change to secrets.name of your jFrog Service Account User Name
+          username: ${{ secrets.JFROG_USERNAME }}
+          # TODO: Change to secrets.name of your jFrog Service Account Api Key
+          password: ${{ secrets.JFROG_API_KEY }}
+          registry: ${{ env.DOCKER_REGISTRY }}
+          
       - name: Build dependencies with Maven
         # run: mvn clean install -Dmaven.test.skip=true
         run: | 
