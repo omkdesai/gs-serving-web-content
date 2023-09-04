@@ -73,7 +73,7 @@ jobs:
         name: Docker Push
         id: push-docker-image
         run: |
-          docker tag $IMAGE_NAME:${{ env.IMAGE_TAG }} $IMAGE_NAME:${{ env.IMAGE_TAG }}
+          docker tag $IMAGE_NAME:${{ env.IMAGE_TAG }} $IMAGE_NAME:${{ github.run_number }}
           docker push $IMAGE_NAME:${{ github.run_number }}
 
 #      - if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/qa'
