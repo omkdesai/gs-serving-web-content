@@ -52,14 +52,27 @@ jobs:
         env:
           JF_URL: ${{ secrets.JF_URL }}
           JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
-
+          
       - name: Docker Build
         id: docker_build
         uses: docker/build-push-action@v2
         with:
           context: .
+          build-args: image_tag=${{ env.IMAGE_TAG }}
           tags: |
-            ${{ env.IMAGE_NAME }}:${{ github.run_number }}
+            ${{ env.IMAGE_NAME }}:${{ steps.short-sha.outputs.sha }}
+            ${{ env.IMAGE_NAME }}:latest
+          cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:latest
+          cache-to: type=inline
+          load: true
+          
+ #     - name: Docker Build
+ #       id: docker_build
+ #       uses: docker/build-push-action@v2
+ #       with:
+ #         context: .
+ #         tags: |
+ #           ${{ env.IMAGE_NAME }}:${{ github.run_number }}
             
       - name: Docker Image check
         run: docker images             
@@ -75,7 +88,7 @@ jobs:
         name: Docker Push
         id: push-docker-image
         run: |
-          #docker tag $IMAGE_NAME:${{ github.run_number }} $IMAGE_NAME:${{ env.IMAGE_TAG }}
+          docker tag $IMAGE_NAME:${{ steps.short-sha.outputs.sha }} $IMAGE_NAME:${{ github.run_number }}
           docker push ${{ env.IMAGE_NAME }}:${{ github.run_number }}
 
 #      - if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/qa'
