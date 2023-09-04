@@ -58,7 +58,6 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           context: .
-          build-args: image_tag=${{ env.IMAGE_TAG }}
           tags: |
             ${{ env.IMAGE_NAME }}:${{ steps.short-sha.outputs.sha }}
             ${{ env.IMAGE_NAME }}:latest
@@ -89,7 +88,7 @@ jobs:
         id: push-docker-image
         run: |
           docker tag $IMAGE_NAME:${{ steps.short-sha.outputs.sha }} $IMAGE_NAME:${{ github.run_number }}
-          docker push ${{ env.IMAGE_NAME }}:${{ github.run_number }}
+          docker push $IMAGE_NAME
 
 #      - if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/qa'
 #        name: Create Prerelease
