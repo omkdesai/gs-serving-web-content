@@ -53,17 +53,9 @@ jobs:
           JF_URL: ${{ secrets.JF_URL }}
           JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
           
-      - name: Docker Build
-        id: docker_build
-        uses: docker/build-push-action@v2
-        with:
-          context: .
-          tags: |
-            ${{ env.IMAGE_NAME }}:${{ steps.short-sha.outputs.sha }}
-            ${{ env.IMAGE_NAME }}:latest
-          cache-from: type=registry,ref=${{ env.IMAGE_NAME }}:latest
-          cache-to: type=inline
-          load: true
+      - name: Docker build Tag Image
+        run: |
+          jf docker build -t $IMAGE_NAME .
           
  #     - name: Docker Build
  #       id: docker_build
