@@ -61,6 +61,8 @@ jobs:
           tags: |
             ${{ env.IMAGE_NAME }}:${{ github.run_number }}
             
+      - name: Docker Image check
+        run: docker images             
 
 
       # - id: scan-docker-image
