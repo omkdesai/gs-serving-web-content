@@ -53,17 +53,9 @@ jobs:
           JF_URL: ${{ secrets.JF_URL }}
           JF_ACCESS_TOKEN: ${{ secrets.JF_ACCESS_TOKEN }}
           
-      - name: Docker build Tag Image
+      - name: Docker build Image
         run: |
-          jf docker build -t $IMAGE_NAME .
-          
- #     - name: Docker Build
- #       id: docker_build
- #       uses: docker/build-push-action@v2
- #       with:
- #         context: .
- #         tags: |
- #           ${{ env.IMAGE_NAME }}:${{ github.run_number }}
+          jf docker build -t $IMAGE_NAME:${{ github.run_number }} .
             
       - name: Docker Image check
         run: docker images             
@@ -75,17 +67,11 @@ jobs:
       #     curl -u $PRISMA_USER:$PRISMA_PASSWORD --output twistcli https://us-east1.cloud.twistlock.com/us-2-158257908/api/v1/util/twistcli && chmod +x twistcli && mv twistcli /tmp/
       #     /tmp/twistcli images scan --details --address https://us-east1.cloud.twistlock.com/us-2-158257908 --user $PRISMA_USER --password $PRISMA_PASSWORD $IMAGE_NAME
 
-      - if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/qa'
-        name: Docker Push
-        id: push-docker-image
-        run: |
-          docker tag $IMAGE_NAME:${{ steps.short-sha.outputs.sha }} $IMAGE_NAME:${{ github.run_number }}
-          docker push $IMAGE_NAME
-
 #      - if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/qa'
-#        name: Create Prerelease
-#        uses: ncipollo/release-action@v1
-#        with:
-#          prerelease: true
-#          tag: ${{ steps.version-bump-git-tag.outputs.new_tag }}
-#          token: ${{ secrets.GITHUB_TOKEN }}          
+#        name: Docker Push
+#        id: push-docker-image
+#        run: |
+#          docker tag $IMAGE_NAME:${{ steps.short-sha.outputs.sha }} $IMAGE_NAME:${{ github.run_number }}
+#          docker push $IMAGE_NAME
+
+      
