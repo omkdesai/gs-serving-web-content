@@ -36,6 +36,11 @@ jobs:
           # TODO: Change to secrets.name of your jFrog Service Account Api Key
           password: ${{ secrets.JF_ACCESS_TOKEN }}
           registry: ${{ env.DOCKER_REGISTRY }}
+          
+      - name: Verify JFrog CLI Installation
+        run: |
+          jfrog --version
+ 
       - name: Configure Docker with JFrog CLI Credential Helper
         run: |
          mkdir -p ~/.docker
