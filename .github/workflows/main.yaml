@@ -35,17 +35,8 @@ jobs:
           username: ${{ secrets.JFROG_USERNAME }}
           # TODO: Change to secrets.name of your jFrog Service Account Api Key
           password: ${{ secrets.JF_ACCESS_TOKEN }}
-          registry: ${{ env.DOCKER_REGISTRY }}
-          
-      - name: Configure Docker with JFrog CLI Credential Helper
-        run: |
-         mkdir -p ~/.docker
-         cat <<EOL > ~/.docker/config.json
-         {
-           "credsStore": "jfrog"
-         }
-         EOL
-          
+          registry: ${{ env.DOCKER_REGISTRY }}          
+       
       - name: Build dependencies with Maven
         # run: mvn clean install -Dmaven.test.skip=true
         run: | 
