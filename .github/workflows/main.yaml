@@ -3,7 +3,7 @@ name: "CI/Release Workflow"
 on:
  push:
    branches:
-     - 'main'
+     - '*'
 
 env:
   # TODO: Change to name of your Docker Registry (eg. jfrog.io)
