@@ -39,7 +39,7 @@ jobs:
           
       - name: Verify JFrog CLI Installation
         run: |
-          jfrog --version
+          jf --version
  
       - name: Configure Docker with JFrog CLI Credential Helper
         run: |
