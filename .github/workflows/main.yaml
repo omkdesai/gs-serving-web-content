@@ -59,15 +59,13 @@ jobs:
         run: |
           jf docker push $IMAGE_NAME:${{ steps.image_tag.outputs.tag }}
           
-      - name: Publish Build info With JFrog CLI
-        run: |
-          # Export the build name and build nuber
-          # Collect environment variables for the build
-          jf rt build-collect-env
-          # Collect VCS details from git and add them to the build
-          jf rt build-add-git
-          # Publish build info
-          jf rt build-publish
+      - if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/qa'
+        name: Create Prerelease
+        uses: ncipollo/release-action@v1
+        with:
+          prerelease: true
+          tag: ${{ steps.image_tag.outputs.tag }}
+          
       # - id: scan-docker-image
       #   name: Scan docker image
       #   run: |
