@@ -3,14 +3,13 @@ name: "CI/Release Workflow"
 on:
  push:
    branches:
-     - 'dev'
+     - '*'
 
 env:
   # TODO: Change to name of your Docker Registry (eg. jfrog.io)
   DOCKER_REGISTRY: "omkdesai.jfrog.io"
   # TODO: Change part to name of your Docker Registry (eg. omkdesai.jfrog.io/image-name)
-  IMAGE_NAME: "omkdesai.jfrog.io/gs-serving-web-docker/test"
-  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  IMAGE_NAME: "omkdesai.jfrog.io/gs-serving-web-docker"
   # PRISMA_USER:  ${{ secrets.PRISMA_USER }}
   # PRISMA_PASSWORD:  ${{ secrets.PRISMA_PASSWORD }}
 
@@ -65,9 +64,9 @@ jobs:
 #        id: create_release       
 #        with:
 #          tag_name: ${{ github.event.release.tag_name }}
-          release_name: Release ${{ steps.image_tag.outputs.tag }}
-          draft: false
-          prerelease: false
+#          release_name: Release ${{ steps.image_tag.outputs.tag }}
+#          draft: false
+#          prerelease: false
           
       # - id: scan-docker-image
       #   name: Scan docker image
