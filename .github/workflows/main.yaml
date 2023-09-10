@@ -10,6 +10,7 @@ env:
   DOCKER_REGISTRY: "omkdesai.jfrog.io"
   # TODO: Change part to name of your Docker Registry (eg. omkdesai.jfrog.io/image-name)
   IMAGE_NAME: "omkdesai.jfrog.io/gs-serving-web-docker/test"
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   # PRISMA_USER:  ${{ secrets.PRISMA_USER }}
   # PRISMA_PASSWORD:  ${{ secrets.PRISMA_PASSWORD }}
 
@@ -61,8 +62,7 @@ jobs:
           
       - if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/qa'
         name: Create release with image tag
-        id: create_release
-        uses: actions/create-release@v1
+        id: create_release       
         with:
 #          tag_name: ${{ github.event.release.tag_name }}
           release_name: Release ${{ steps.image_tag.outputs.tag }}
