@@ -60,11 +60,14 @@ jobs:
           jf docker push $IMAGE_NAME:${{ steps.image_tag.outputs.tag }}
           
       - if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/qa'
-        name: Create Prerelease
-        uses: ncipollo/release-action@v1
+        name: Create release with image tag
+        id: create_release
+        uses: actions/create-release@v1
         with:
-          prerelease: true
-          tag: ${{ steps.image_tag.outputs.tag }}
+#          tag_name: ${{ github.event.release.tag_name }}
+          release_name: Release ${{ steps.image_tag.outputs.tag }}
+          draft: false
+          prerelease: false
           
       # - id: scan-docker-image
       #   name: Scan docker image
