@@ -3,7 +3,7 @@ name: "CI/Release Workflow"
 on:
  push:
    branches:
-     - '*'
+     - 'dev'
 
 env:
   # TODO: Change to name of your Docker Registry (eg. jfrog.io)
@@ -60,10 +60,10 @@ jobs:
         run: |
           jf docker push $IMAGE_NAME:${{ steps.image_tag.outputs.tag }}
           
-      - if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/qa'
-        name: Create release with image tag
-        id: create_release       
-        with:
+#      - if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev' || github.ref == 'refs/heads/qa'
+#        name: Create release with image tag
+#        id: create_release       
+#        with:
 #          tag_name: ${{ github.event.release.tag_name }}
           release_name: Release ${{ steps.image_tag.outputs.tag }}
           draft: false
