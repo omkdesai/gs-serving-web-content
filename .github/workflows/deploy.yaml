@@ -29,7 +29,6 @@ jobs:
 
   deploy_to_gke:
     name: Deploy to GKE
-    needs: build_and_push
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
