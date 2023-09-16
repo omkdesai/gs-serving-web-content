@@ -23,7 +23,8 @@ jobs:
       uses: google-github-actions/setup-gcloud@v1
       with:
         service_account_key: ${{ secrets.GCP_SA_KEY }}
-        project_id: ${{ secrets.GCP_PROJECT_ID }}
+        #project_id: ${{ secrets.GCP_PROJECT_ID }}
+        project_id: "plated-inn-397411"
 
     - name: Get GKE Cluster Credentials
       uses: google-github-actions/get-gke-credentials@v1
