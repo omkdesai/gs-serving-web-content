@@ -24,7 +24,7 @@ env:
   DOCKER_REGISTRY: "omkdesai.jfrog.io"
   # TODO: Change part to name of your Docker Registry (eg. omkdesai.jfrog.io/jf repo name/image-name)
   IMAGE_NAME: "omkdesai.jfrog.io/gs-serving-web-docke-docker/test"
-
+  image: "${image_tag}"
 jobs:
 
   deploy_to_gke:
